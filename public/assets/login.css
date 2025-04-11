@@ -1,0 +1,37 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #eef2f7;
+  }
+  
+  .login-wrapper {
+    min-height: 100vh;
+  }
+  
+  .login-box {
+    width: 100%;
+    max-width: 400px;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    padding: 30px 25px;
+  }
+  
+  .brand-logo {
+    width: 55px;
+    height: 55px;
+    margin-bottom: 10px;
+  }
+  
+  .brand-name {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #0d6efd;
+  }
+  
+  .error-message {
+    color: red;
+    font-size: 0.9rem;
+    margin-top: -5px;
+    margin-bottom: 10px;
+  }
+  
