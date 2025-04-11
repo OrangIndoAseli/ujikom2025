@@ -68,8 +68,8 @@ class Distribusi {
         // Simpan distribusi (tambahkan harga jika kamu mau simpan langsung)
         $query = "INSERT INTO distribusi (barang_id, jumlah, tujuan, tanggal_distribusi, harga, alamat, nomortlp) VALUES (?, ?, ?, ?, ?, ?, ?)";
         $stmt = $this->conn->prepare($query);
-        $stmt->bind_param("iisddss", $barang_id, $jumlah, $tujuan, $tanggal_distribusi, $harga_total, $alamat, $nomortlp);
-    
+        $stmt->bind_param("iissdss", $barang_id, $jumlah, $tujuan, $tanggal_distribusi, $harga_total, $alamat, $nomortlp);
+
         if ($stmt->execute()) {
             // Kurangi stok barang
             $updateStokQuery = "UPDATE barang SET stok = stok - ? WHERE id_barang = ?";
@@ -107,17 +107,18 @@ class Distribusi {
         $stmtInsert = $this->conn->prepare($insert);
         $keterangan = "Berhasil Terkirim";
         $stmtInsert->bind_param(
-            "iiidsdsss", 
+            "iiidsssss", 
             $distribusi['id_distribusi'],
             $distribusi['barang_id'],
             $distribusi['jumlah'],
-            $total_harga, // ← harga total hasil kali
+            $total_harga,
             $distribusi['tujuan'],
             $distribusi['tanggal_distribusi'],
             $keterangan,
-            $alamat['alamat'],
-            $nomortlp['nomortlp']
+            $distribusi['alamat'],
+            $distribusi['nomortlp']
         );
+        
     
         if ($stmtInsert->execute()) {
             // Hapus dari distribusi
