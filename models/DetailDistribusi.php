@@ -21,7 +21,7 @@ class DetailDistribusi{
     }
 
     public function getAll() {
-        $query = "SELECT d.id_detail_distribusi, d.distribusi_id, d.barang_id, b.nama AS nama_barang, d.jumlah, d.harga, d.tujuan, d.tanggal_distribusi, d.keterangan
+        $query = "SELECT d.id_detail_distribusi, d.distribusi_id, d.barang_id, b.nama AS nama_barang, d.jumlah, d.harga, d.tujuan, d.tanggal_distribusi, d.keterangan, d.alamat, d.nomortlp
                   FROM detail_distribusi d
                   JOIN barang b ON d.barang_id = b.id_barang";
         $result = $this->conn->query($query);

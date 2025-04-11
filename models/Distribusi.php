@@ -13,7 +13,7 @@ class Distribusi {
     // Ambil semua data distribusi + relasi barang
     public function getAll() {
         $query = "SELECT d.id_distribusi, d.barang_id, b.nama AS nama_barang, b.harga AS harga_satuan, d.jumlah, d.tujuan, 
-        d.tanggal_distribusi, (b.harga * d.jumlah) AS total_harga FROM distribusi d 
+        d.tanggal_distribusi, d.alamat, d.nomortlp, (b.harga * d.jumlah) AS total_harga FROM distribusi d 
         JOIN barang b ON d.barang_id = b.id_barang";
         $result = $this->conn->query($query);
         return $result->fetch_all(MYSQLI_ASSOC);
@@ -41,7 +41,7 @@ class Distribusi {
     }
 
     // Tambah data distribusi baru
-    public function create($barang_id, $jumlah, $tujuan, $tanggal_distribusi) {
+    public function create($barang_id, $jumlah, $tujuan, $tanggal_distribusi, $alamat, $nomortlp) {
         if (!$this->barangExists($barang_id)) {
             return ["error" => "Barang tidak ditemukan"];
         }
@@ -66,9 +66,9 @@ class Distribusi {
         $harga_total = $harga_satuan * $jumlah;
     
         // Simpan distribusi (tambahkan harga jika kamu mau simpan langsung)
-        $query = "INSERT INTO distribusi (barang_id, jumlah, tujuan, tanggal_distribusi, harga) VALUES (?, ?, ?, ?, ?)";
+        $query = "INSERT INTO distribusi (barang_id, jumlah, tujuan, tanggal_distribusi, harga, alamat, nomortlp) VALUES (?, ?, ?, ?, ?, ?, ?)";
         $stmt = $this->conn->prepare($query);
-        $stmt->bind_param("iissd", $barang_id, $jumlah, $tujuan, $tanggal_distribusi, $harga_total);
+        $stmt->bind_param("iisddss", $barang_id, $jumlah, $tujuan, $tanggal_distribusi, $harga_total, $alamat, $nomortlp);
     
         if ($stmt->execute()) {
             // Kurangi stok barang
@@ -102,19 +102,21 @@ class Distribusi {
         $total_harga = $distribusi['harga'] * $distribusi['jumlah'];
     
         // Insert ke detail_distribusi
-        $insert = "INSERT INTO detail_distribusi (distribusi_id, barang_id, jumlah, harga, tujuan, tanggal_distribusi, keterangan) 
-                   VALUES (?, ?, ?, ?, ?, ?, ?)";
+        $insert = "INSERT INTO detail_distribusi (distribusi_id, barang_id, jumlah, harga, tujuan, tanggal_distribusi, keterangan, alamat, nomortlp ) 
+                   VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmtInsert = $this->conn->prepare($insert);
         $keterangan = "Berhasil Terkirim";
         $stmtInsert->bind_param(
-            "iiidsss", 
+            "iiidsdsss", 
             $distribusi['id_distribusi'],
             $distribusi['barang_id'],
             $distribusi['jumlah'],
             $total_harga, // ← harga total hasil kali
             $distribusi['tujuan'],
             $distribusi['tanggal_distribusi'],
-            $keterangan
+            $keterangan,
+            $alamat['alamat'],
+            $nomortlp['nomortlp']
         );
     
         if ($stmtInsert->execute()) {

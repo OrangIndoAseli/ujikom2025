@@ -29,12 +29,14 @@ class DistribusiController {
 
     // Tambah distribusi baru
     public function store() {
-        if (isset($_POST['barang_id'], $_POST['jumlah'], $_POST['tujuan'], $_POST['tanggal_distribusi'])) {
+        if (isset($_POST['barang_id'], $_POST['jumlah'], $_POST['tujuan'], $_POST['tanggal_distribusi'], $_POST['alamat'], $_POST['nomortlp'])) {
             $result = $this->distribusiModel->create(
                 $_POST['barang_id'], 
                 $_POST['jumlah'], 
                 $_POST['tujuan'], 
-                $_POST['tanggal_distribusi']
+                $_POST['tanggal_distribusi'],
+                $_POST['alamat'],
+                $_POST['nomortlp']
             );
             
             if (isset($result['success'])) {
