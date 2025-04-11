@@ -1,16 +1,16 @@
 <?php
 require_once 'models/Barang.php';
-require_once 'models/Distribusi.php';
+require_once 'models/DetailDistribusi.php';
 require_once 'models/Supplier.php';
 
 class HomeController {
     private $barangModel;
-    private $detaildistribusiModel;
+    private $distribusiModel;
     private $supplierModel;
 
     public function __construct($db) {
         $this->barangModel = new Barang($db);
-        $this->detaildistribusiModel = new DetailDistribusi($db);
+        $this->distribusiModel = new Distribusi($db);
         $this->supplierModel = new Supplier($db);
     }
 
@@ -18,8 +18,8 @@ class HomeController {
         $dataBarang = $this->barangModel->getAll();
         $jumlahBarang = count($dataBarang);
 
-        $distribusiBarang = $this->detaildistribusiModel->getAll();
-        $jumlahDetailDistribusi = count($distribusiBarang);
+        $distribusiBarang = $this->distribusiModel->getAll();
+        $jumlahDistribusi = count($distribusiBarang);
 
         $dataSupplier = $this->supplierModel->getAll();
         $jumlahSupplier = count($dataSupplier);

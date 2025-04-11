@@ -18,7 +18,7 @@ body {
 .navbar {
     height: 60px;
     background-color: #008cff;
-    color: white;
+    color: rgb(255, 255, 255);
     padding: 0 20px;
     display: flex;
     align-items: center;

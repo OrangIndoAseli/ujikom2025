@@ -26,7 +26,7 @@
             <div class="card text-white bg-warning mb-3">
                 <div class="card-body">
                 <h5 class="card-title">Total Distribusi</h5>
-        <p class="card-text"><?= $jumlahDetailDistribusi ?></p>
+        <p class="card-text"><?= $jumlahDistribusi ?></p>
                 </div>
             </div>
         </div>

@@ -17,7 +17,7 @@
 <body>
 
    <!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top" >
     <div class="container-fluid justify-content-between">
         <!-- Kiri: Toggle + Inventory -->
         <div class="d-flex align-items-center">

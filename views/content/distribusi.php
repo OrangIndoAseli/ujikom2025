@@ -42,10 +42,10 @@ $barang = $barang ?? [];
                             <td><?= htmlspecialchars($d['tanggal_distribusi'] ?? '', ENT_QUOTES, 'UTF-8'); ?></td>
                             <td>Rp <?= number_format((float)($d['total_harga'] ?? 0), 0, ',', '.'); ?></td>
                             <td>
-                                <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#konfirmasi<?= $d['id_distribusi']; ?>">
+                                <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#konfirmasi<?= $d['id_distribusi']; ?>">
                                     konfirmasi
                                 </button>
-                                <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalHapus<?= $d['id_distribusi']; ?>">
+                                <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modalHapus<?= $d['id_distribusi']; ?>">
                                     kembalikan
                                 </button>
                             </td>

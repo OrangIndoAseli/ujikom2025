@@ -1,5 +1,4 @@
 <?php
-
 require_once 'models/User.php';
 
 class AuthController {
@@ -9,7 +8,7 @@ class AuthController {
         $this->userModel = new User();
     }
 
-    public function loginAction($post) {
+    public function login($post) {
         $username = $post['username'] ?? '';
         $password = $post['password'] ?? '';
 
@@ -18,12 +17,11 @@ class AuthController {
         if ($user) {
             $_SESSION['user'] = $user;
             header("Location: index.php?page=home");
-            exit;
         } else {
             $_SESSION['error'] = "Username atau password salah!";
             header("Location: index.php?page=login");
-            exit;
         }
+        exit;
     }
 
     public function logout() {
