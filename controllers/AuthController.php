@@ -1,11 +1,11 @@
 <?php
-require_once 'models/User.php';
+require_once 'models/Users.php';
 
 class AuthController {
     private $userModel;
 
     public function __construct() {
-        $this->userModel = new User();
+        $this->userModel = new Users();
     }
 
     public function login($post) {

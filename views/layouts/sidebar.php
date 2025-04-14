@@ -30,6 +30,11 @@
             </a>
         </li>
         <li class="nav-item">
+            <a href="index.php?page=users&action=show&id=1" class="nav-link text-white">
+                <i class="fas fa-user"></i> Kelola Akun
+            </a>
+        </li>
+        <li class="nav-item">
             <a href="index.php?page=logout" class="nav-link text-white">
                 <i class="fas fa-user"></i> Logout
             </a>
